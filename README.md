@@ -3,7 +3,7 @@
 
 Using the data in the repo develop a map view and display the attributes data (only Bicycle_Routes) in a table. Objective is to demo development in Angular framework, display a map with GIS layers and data display in a table. 
 
-*note: Do you display the GIS features in table column*
+*note: do not display the GIS features in table column*
 
 
 **Project Details**
