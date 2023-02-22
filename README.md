@@ -16,7 +16,7 @@ Using the data in the repo develop a map view and display the attributes data (o
 
 3.Nice to have: Checked-in code is editable and may build in stackblitz. [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-pyj3sf)
 
-4.View the data in for data review (copy/paste)[geoJSON](https://geojson.tools):
+4.View the data in [geoJSON](https://geojson.tools) for review (copy/paste):
 - Bicycle_Routes.geojson (Fairfax County, Virginia)
   - fields to display in table:   LABEL,ROUTE,ROAD_SPEED,MAINTENANCE,STATUS
 - National_Highway_Freight_Network.geojson
