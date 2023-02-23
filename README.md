@@ -16,12 +16,12 @@ Using the data in the repo develop a map view and display the attributes data (o
 
 3.Nice to have: Checked-in code is editable and may build in stackblitz. [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-pyj3sf)
 
-4.View the data in [geoJSON](https://geojson.tools) for review (copy/paste):
+4.(hint) View the data in [geoJSON](https://geojson.tools) for review (copy/paste): 
 - Bicycle_Routes.geojson (Fairfax County, Virginia)
   - fields to display in table:   LABEL,ROUTE,ROAD_SPEED,MAINTENANCE,STATUS
 - National_Highway_Freight_Network.geojson
 
-5. UI wireframe on [Lucid](https://lucid.app/lucidspark/3804a42d-9cb3-4ab3-b570-c7f6b5fd4d07/edit?viewport_loc=-8%2C-8%2C1920%2C880%2C0_0&invitationId=inv_5e8909cb-0630-4eab-8b54-45fd38e9e2d6)
+5. UI wireframe on [Lucid](https://lucid.app/lucidspark/3804a42d-9cb3-4ab3-b570-c7f6b5fd4d07/edit?viewport_loc=-8%2C-8%2C1920%2C880%2C0_0&invitationId=inv_5e8909cb-0630-4eab-8b54-45fd38e9e2d6). Please use your creative freedom for the UI, this is only a guidance. 
 
 
 
