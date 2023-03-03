@@ -1,0 +1,72 @@
+<div class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="objectId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Object Id</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.objectId }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="label">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Label</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.label | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="route">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Route</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.route | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roadSpeed">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Road Speed</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.roadSpeed }} mph
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="segId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Segment Id</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.segId }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maintenance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Maintenance</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.maintenance == "VDOT" ? (bicycleRoutesProps.maintenance | uppercase) : (bicycleRoutesProps.maintenance | titlecase) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let bicycleRoutesProps">
+        {{ bicycleRoutesProps.status | titlecase | replaceUnderscore }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value | titlecase }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="20"
+    [pageSizeOptions]="[5, 10, 20, 40]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

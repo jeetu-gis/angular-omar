@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/gis/map'"> Map </a>
+      <a mat-button [routerLink]="'/gis/bicycle-routes-table'"> Bicycle Routes Table </a>
+      <a mat-button [routerLink]="'/gis/highway-freight-network-table'"> Highway Freight Network Table </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,0 +1,79 @@
+<div class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="nhfn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>NHFN</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.nhfn }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stateNum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.stateNum | getKeyByValue }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cityNum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>City Number</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.cityNum }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roadClass">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Road Class</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.roadClass }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="facilityT">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Facility T</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.facilityT }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="urbanCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Urban Code</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.urbanCode }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nhs">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>NHS</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.nhs }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="strahnet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>STRAHNET</th>
+      <td mat-cell *matCellDef="let highwayFreightNetworkFeature">
+        {{ highwayFreightNetworkFeature.strahnet }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value | titlecase }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="20"
+    [pageSizeOptions]="[5, 10, 20, 40]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
