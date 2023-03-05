@@ -6,7 +6,6 @@ export interface BicycleRoutesProps {
   label: string;
   route: string;
   roadSpeed: number;
-  segId: string;
   maintenance: Maintenance;
   status: Status;
   shapeLength: number;

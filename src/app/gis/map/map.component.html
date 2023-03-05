@@ -1,6 +1,24 @@
 <div
+  style="{{onWindowResize()}}"
   (leafletMapReady)="onMapReady($event)"
   [leafletOptions]="options"
   class="map"
   leaflet
 ></div>
+<mat-radio-group aria-label="Filter bicycle lanes by status">
+  <mat-radio-button (change)="onFilterChange()" value="CAUTION"
+    >Caution</mat-radio-button
+  >
+  <mat-radio-button (change)="onFilterChange()" value="LESS_PREFERRED"
+    >Less Preferred</mat-radio-button
+  >
+  <mat-radio-button (change)="onFilterChange()" value="PREFERRED"
+    >Preferred</mat-radio-button
+  >
+  <mat-radio-button (change)="onFilterChange()" value="SOMEWHAT"
+    >Somewhat</mat-radio-button
+  >
+  <mat-radio-button (change)="onFilterChange()" value="CLEAR"
+    >Clear Filter</mat-radio-button
+  >
+</mat-radio-group>

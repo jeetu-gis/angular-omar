@@ -10,16 +10,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatRadioModule } from '@angular/material/radio';
+import { MapComponent } from './gis/map/map.component';
 
 const routes: Routes = [
-  { path: 'gis', loadChildren: () => import('./gis/demo.module').then(m => m.DemoModule) },
-  { path: '**', redirectTo: 'demoModule' }
+  {
+    path: 'gis',
+    loadChildren: () => import('./gis/demo.module').then((m) => m.DemoModule),
+  },
+  { path: '**', redirectTo: 'demoModule' },
+  { path: '', component: MapComponent },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,9 +33,10 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    LeafletModule
+    LeafletModule,
+    MatRadioModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

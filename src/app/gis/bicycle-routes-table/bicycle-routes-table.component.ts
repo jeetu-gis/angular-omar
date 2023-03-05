@@ -19,11 +19,9 @@ import { FeatureService } from '../services/feature.service';
 export class BicycleRoutesTableComponent implements OnInit, AfterViewInit {
   @Input() bicycleRoutesPropsArray: BicycleRoutesProps[] = [];
   displayedColumns: string[] = [
-    'objectId',
     'label',
     'route',
     'roadSpeed',
-    'segId',
     'maintenance',
     'status',
   ];
@@ -35,8 +33,8 @@ export class BicycleRoutesTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
-    this.featureService.getBicycleRoutesProps().subscribe(
-      (json: any) => {
+    this.featureService.getBicycleRoutesProps().subscribe({
+      next: (json: any) => {
         if (!!json.features) {
           for (let i = 0; i <= 60; i++) {
             const bicycleRoutesProps: BicycleRoutesProps = {
@@ -44,38 +42,9 @@ export class BicycleRoutesTableComponent implements OnInit, AfterViewInit {
               label: json.features[i]['properties']['LABEL'],
               route: json.features[i]['properties']['ROUTE'],
               roadSpeed: json.features[i]['properties']['ROAD_SPEED'],
-              segId: json.features[i]['properties']['SEGID'],
               maintenance: json.features[i]['properties']['MAINTENANCE'],
               status: json.features[i]['properties']['STATUS'],
-              shapeLength: json.features[i]['properties']['Shape__Length']
-            };
-            this.bicycleRoutesPropsArray.push(bicycleRoutesProps);
-          }
-          this.dataSource = new MatTableDataSource<BicycleRoutesProps>(
-            this.bicycleRoutesPropsArray
-          );
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  ngAfterViewInit() {
-    this.featureService.getBicycleRoutesProps().subscribe(
-      (json: any) => {
-        if (!!json.features) {
-          for (let i = 61; i < json.features.length; i++) {
-            const bicycleRoutesProps: BicycleRoutesProps = {
-              objectId: json.features[i]['properties']['OBJECTID'],
-              label: json.features[i]['properties']['LABEL'],
-              route: json.features[i]['properties']['ROUTE'],
-              roadSpeed: json.features[i]['properties']['ROAD_SPEED'],
-              segId: json.features[i]['properties']['SEGID'],
-              maintenance: json.features[i]['properties']['MAINTENANCE'],
-              status: json.features[i]['properties']['STATUS'],
-              shapeLength: json.features[i]['properties']['Shape__Length']
+              shapeLength: json.features[i]['properties']['Shape__Length'],
             };
             this.bicycleRoutesPropsArray.push(bicycleRoutesProps);
           }
@@ -84,16 +53,46 @@ export class BicycleRoutesTableComponent implements OnInit, AfterViewInit {
           );
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          return;
         }
       },
-      (err) => {
-        console.log(err);
-      }
-    );
+      error: (err) => console.log(err),
+      complete: () => console.log('Initial record retrieval complete.'),
+    });
+  }
+
+  ngAfterViewInit() {
+    this.featureService.getBicycleRoutesProps().subscribe({
+      next: (json: any) => {
+        if (!!json.features) {
+          for (let i = 61; i < json.features.length; i++) {
+            const bicycleRoutesProps: BicycleRoutesProps = {
+              objectId: json.features[i]['properties']['OBJECTID'],
+              label: json.features[i]['properties']['LABEL'],
+              route: json.features[i]['properties']['ROUTE'],
+              roadSpeed: json.features[i]['properties']['ROAD_SPEED'],
+              maintenance: json.features[i]['properties']['MAINTENANCE'],
+              status: json.features[i]['properties']['STATUS'],
+              shapeLength: json.features[i]['properties']['Shape__Length'],
+            };
+            this.bicycleRoutesPropsArray.push(bicycleRoutesProps);
+          }
+          this.dataSource = new MatTableDataSource<BicycleRoutesProps>(
+            this.bicycleRoutesPropsArray
+          );
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          return;
+        }
+      },
+      error: (err) => console.log(err),
+      complete: () => console.log('Final record retrieval complete.'),
+    });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }

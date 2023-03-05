@@ -10,16 +10,12 @@ import { HighwayFreightNetworkFeature } from '../models/features/highway-freight
   providedIn: 'root',
 })
 export class FeatureService {
-  private bicycleRoutesUrl = 'assets/Bicycle_Routes.geojson';
+  private bicycleRoutesUrl = 'assets/geojsons/Bicycle_Routes.geojson';
   private highwayFreightNetworkUrl =
-    'assets/National_Highway_Freight_Network.geojson';
+    'assets/geojsons/National_Highway_Freight_Network.geojson';
 
   bicycleRoutesProps$ = this.http.get<BicycleRoutesProps[]>(
     this.bicycleRoutesUrl
-  );
-
-  highwayFreightNetworkProps$ = this.http.get<HighwayFreightNetworkProps[]>(
-    this.highwayFreightNetworkUrl
   );
 
   bicycleRoutesFeature$ = this.http.get<BicycleRoutesFeature[]>(
@@ -36,8 +32,8 @@ export class FeatureService {
     return this.bicycleRoutesProps$;
   }
 
-  getHighwayNetworkProps(): Observable<HighwayFreightNetworkProps[]> {
-    return this.highwayFreightNetworkProps$;
+  getBicycleRoutes(): Observable<BicycleRoutesFeature[]> {
+    return this.bicycleRoutesFeature$;
   }
 
   getBicycleRoutesAndHighwayNetworkFeatures(): Observable<
