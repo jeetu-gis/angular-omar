@@ -1,4 +1,6 @@
+import { Point } from 'leaflet';
+
 export interface Geometry {
   type: string;
-  coordinates: [[L.Point, L.Point], [L.Point, L.Point]];
+  coordinates: [[Point, Point], [Point, Point]];
 }
